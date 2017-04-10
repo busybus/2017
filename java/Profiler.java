@@ -23,9 +23,9 @@ public class Profiler {
 		this.W = new ArrayList<>();
 		
 		world.rewind();
-		assert(world.getI() == 0);
+		assert(world.geti() == 0);
 		
-		while(world.getI() < Profiler.I) {
+		while(world.geti() < Profiler.I) {
 			int b = world.getBusPosition();
 			List<Integer> B = world.getBusPassengers();
 			List<List<Integer>> Q = world.getStationsQueues();
