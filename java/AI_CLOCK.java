@@ -11,11 +11,18 @@ public class AI_CLOCK extends Strategy {
 	
 	@Override
 	public Response step(int b, List<Integer> B, List<List<Integer>> Q) {
+		// Number of passengers to board
 		int n = Math.min(Q.get(b).size(), this.C - B.size());
+		
+		// M is the passenger selection from the queue Q[b]
 		List<Integer> M = new ArrayList<>();
-		for (int i = 0; i < n; i++)
-			M.add(i);
-		return new Response(M, 1);
+		// Take passengers number 0, 1, ..., (n-1)
+		for (int i = 0; i < n; i++) M.add(i);
+		
+		// Always go clockwise
+		int s = +1;
+		
+		return new Response(M, s);
 	}	
-
 }
+

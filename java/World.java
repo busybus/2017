@@ -5,13 +5,13 @@ import java.util.List;
 
 public class World {
 	
-	private int busCapacity;      // C
-	private int numberOfStations; // N
-	private int busPosition;
+	private int busCapacity;      // Bus capacity C
+	private int numberOfStations; // Number of stations N
+	private int busPosition;      // Current bus position
 	private List<Integer> busPassengers;
 	private List<List<Integer>> stationsQueues;
-	private int i;
-	private List<News> NEWS;
+	private int i;                // Time
+	private List<News> NEWS;      // Passenger queing history
 	
 	class News {
 		final int a;
@@ -30,6 +30,7 @@ public class World {
 	}
 	
 	public void rewind() {
+		// Rewinds the world
 		this.busPosition = 0;
 		this.busPassengers = new ArrayList<>();
 		this.stationsQueues = new ArrayList<>();
@@ -39,6 +40,7 @@ public class World {
 	}
 	
 	public News news() {
+		// News = a person arrives at "a" with destination "b"
 		while (this.NEWS.size() <= this.i) {
 			int N = this.numberOfStations;
 			int a = Utils.randInt(0, N - 1);
@@ -49,17 +51,36 @@ public class World {
 	}
 	
 	public void move(Response response) {
+		// Perform the action indicated by the AI
+		//  - passengers to board:
 		List<Integer> M = response.getM();
+		//  - direction to go:
 		int s = response.getS();
+		
+		// M is a list of indices M = [i1, i2, .., im]
+        // into the list Q[b] indicating that the people Q[b][i] will board
+        // the bus (in the order defined by M).
+        // Set M = empty if no one boards the bus.
+        // Note the constraints:
+        //     len(B) + len(M) <= Capacity C,
+        // and
+        //     0 <= i < len(Q[b]) for each i in M.
+        
+        // The integer s is either +1, -1, or 0,
+        // indicating the direction of travel
+        //  of the bus (the next station is (b + s) % N).
+        
 		
 		// http://stackoverflow.com/questions/3018683/what-does-the-assert-keyword-do
 		// Assertions have to be enabled with "java -ea Main"
 		this.checkConsistency(this.busCapacity, this.numberOfStations, this.busPosition, this.busPassengers, this.stationsQueues, M, s);
 		
+        // Passengers mount (in the given order) ...
 		for (int i : M) {
 			this.busPassengers.add(this.stationsQueues.get(this.busPosition).get(i));
 		}
 		
+        // ... and are removed from the queue
 		Collections.sort(M, new Comparator<Integer>() {
 			public int compare(Integer n1, Integer n2) {
 				return n2.compareTo(n1);
@@ -70,20 +91,24 @@ public class World {
 		//
 		for (int i : M) q.remove(i);
 		
+		// Advance bus
 		this.busPosition = (this.busPosition + (this.numberOfStations + s)) % this.numberOfStations;
 		
+		// Passengers unmount if they have reached their station
 		if (this.busPassengers.size() > 0) {
 			this.busPassengers.removeAll(Collections.singleton(this.busPosition));
 		}
 		
+		// Advance time
 		this.i += 1;
 		
+		// New person arrives at "a" with destination "b"
 		News news = this.news();
 		this.stationsQueues.get(news.a).add(news.b);
-		
 	}
 	
 	public double getWaitings() {
+		// Number of people waiting in queue, averaged over the stations
 		ArrayList<Integer> sizes = new ArrayList<>();
 		for (List<Integer> q : this.stationsQueues) {
 			sizes.add(q.size());

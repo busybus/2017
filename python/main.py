@@ -141,7 +141,7 @@ class World:
         self.B = None      # Bus passengers' destinations [list]
         self.Q = None      # Queues at stations [list of list]
         self.i = None      # Iteration number (i.e. time)
-        self.NEWS = [None]  # World trajectory record [list of tuple/None]
+        self.NEWS = [None] # World trajectory record [list of tuple/None]
         self.rewind()
 
     def rewind(self):
