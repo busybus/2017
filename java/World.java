@@ -58,29 +58,28 @@ public class World {
 		int s = response.getS();
 		
 		// M is a list of indices M = [i1, i2, .., im]
-        // into the list Q[b] indicating that the people Q[b][i] will board
-        // the bus (in the order defined by M).
-        // Set M = empty if no one boards the bus.
-        // Note the constraints:
-        //     len(B) + len(M) <= Capacity C,
-        // and
-        //     0 <= i < len(Q[b]) for each i in M.
-        
-        // The integer s is either +1, -1, or 0,
-        // indicating the direction of travel
-        //  of the bus (the next station is (b + s) % N).
-        
+		// into the list Q[b] indicating that the people Q[b][i] will board
+		// the bus (in the order defined by M).
+		// Set M = empty if no one boards the bus.
+		// Note the constraints:
+		//     len(B) + len(M) <= Capacity C,
+		// and
+		//     0 <= i < len(Q[b]) for each i in M.
+		
+		// The integer s is either +1, -1, or 0,
+		// indicating the direction of travel
+		//  of the bus (the next station is (b + s) % N).
 		
 		// http://stackoverflow.com/questions/3018683/what-does-the-assert-keyword-do
 		// Assertions have to be enabled with "java -ea Main"
 		this.checkConsistency(this.busCapacity, this.numberOfStations, this.busPosition, this.busPassengers, this.stationsQueues, M, s);
 		
-        // Passengers mount (in the given order) ...
+		// Passengers mount (in the given order) ...
 		for (int i : M) {
 			this.busPassengers.add(this.stationsQueues.get(this.busPosition).get(i));
 		}
 		
-        // ... and are removed from the queue
+		// ... and are removed from the queue
 		Collections.sort(M, new Comparator<Integer>() {
 			public int compare(Integer n1, Integer n2) {
 				return n2.compareTo(n1);
