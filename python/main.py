@@ -411,7 +411,7 @@ def main():
         for n, s in K:
             if s == max(s for n, s in K):
                 R[n] = rank
-            S[n].append(mean(S[n] + [s]))
+            S[n].append(s)
 
 
     #  Section 3: Summary of results
@@ -426,9 +426,9 @@ def main():
 
     # The history of scores of n-th competitor
     # is available here as S[n]
-    print("Averaged score history:")
+    print("Score history:")
     for n, H in enumerate(S):
-        print("Contestant", n, ":", H)
+        print("   Contestant #{0}:".format(n), H)
 
     # (Un)comment the following line for the score history plot
     """

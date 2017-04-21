@@ -86,8 +86,6 @@ public class Main {
 					// Add the newest score to the history of contestant n
 					List<Double> scores_of_n = scores.get(n);
 					scores_of_n.add(score.score);
-					// REPLACE it by the average so far (to have a more "stable" number)
-					scores_of_n.set(scores_of_n.size()-1, Utils.mean(scores_of_n));
 				}
 			}
 			
@@ -101,6 +99,11 @@ public class Main {
 				if (ranks.get(n) != rank) continue;
 				System.out.println("   " + strategies.get(n).getName());
 			}
+		}
+		
+		System.out.println("Score history:");
+		for (int n = 0; n != scores.size(); ++n) {
+			System.out.println("   Contestant #" + n + ": " + scores.get(n));
 		}
 		
 	}

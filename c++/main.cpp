@@ -398,8 +398,6 @@ int main() {
 		for (auto i : K) {
 			// Append the score of the strategy to its history
 			S[i.n].push_back(i.v);
-			// Take the running average as the score
-			S[i.n].back() = mean(S[i.n]);
 			
 			// Filter losers
 			if (i.v < max_score) continue;
@@ -426,7 +424,7 @@ int main() {
 
 	// The history of scores of n-th competitor 
 	// is available here as S[n]
-	cout << "Running average score history:" << endl;
+	cout << "Score history:" << endl;
 	for (unsigned n = 0; n != S.size(); ++n)
 		cout << "   Contestant #" << n << ": " << S[n] << endl;
 
