@@ -1,0 +1,27 @@
+1. Initializing navigators
+2. Profiling navigators
+Number of competitors: 11
+Preparing 'world'
+Profiling
+ - Profiling: "Modestly greedy"
+   *Score for this round: 276.1282874
+ - Profiling: "Java ./sub_01/"
+   *Score for this round: 11.100426
+ - Profiling: "python sub_02.main (Rui's AI)"
+   *Score for this round: 0.8966639
+ - Profiling: "c++ ./sub_03/"
+   *Score for this round: 16.96610475
+ - Profiling: "c++ ./sub_04/"
+   *Score for this round: 1.1868636
+ - Profiling: "python sub_05.main (CB-strategy)"
+   *Score for this round: 1.01867765
+ - Profiling: "c++ ./sub_06/"
+   *Score for this round: 1.0593222
+ - Profiling: "python sub_07.main (Pickupcomparison 1.1)"
+   *Score for this round: 1.5052534
+ - Profiling: "python sub_08.main (MWeigelt)"
+   *Score for this round: 1.5192334
+ - Profiling: "c++ ./sub_09/"
+   *Error: 
+ - Profiling: "python sub_10.smartturn (smart turner 15 3)"
+   *Score for this round: 0.95862085
