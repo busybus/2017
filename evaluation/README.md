@@ -1,4 +1,4 @@
-This folder contains the submission of the participants (under "sub_xx"), and the evaluation scripts.
+This folder contains the submissions of the participants (under "sub_xx"), and the evaluation scripts.
 
 To run the evaluation, execute:
 
