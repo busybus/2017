@@ -13,7 +13,7 @@ def print(*args, **kwargs):
 	return x
 
 from random import randint
-from numpy import mean
+from numpy import mean, arange
 	
 #  Section 0: Classes
 #  ------------------
@@ -438,14 +438,18 @@ def main():
 			print("   *Score for this round:", score)
 
 			#print(report.W)
-			
+
+			binsize = 1/N
+			separators = lambda a,b: arange(a-binsize/2, b+binsize/2, binsize)
+
 			plt.clf()
-			plt.hist(report.W[(2*N) : ], range=(0, 10), bins=30)
+			plt.hist(report.W[(2*N) : ], bins=separators(0,10))
 			plt.savefig('./hist/hist_0-10_{:02d}.png'.format(n))
-			
+            
 			plt.clf()
-			plt.hist(report.W[(2*N) : ], range=(0, 2), bins=30)
+			plt.hist(report.W[(2*N) : ], bins=separators(0,2))
 			plt.savefig('./hist/hist_0-2_{:02d}.png'.format(n))
+
 			
 		except Exception as err:
 			print("   *Error:", err)
